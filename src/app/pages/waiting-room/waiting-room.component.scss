@@ -1,0 +1,305 @@
+@import '../../../styles/variables';
+
+.waiting-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 2rem;
+}
+
+.header {
+  margin-bottom: 2rem;
+  text-align: center;
+
+  .back-link {
+    display: inline-block;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    font-family: 'Fredoka One', cursive;
+    color: $accent-o;
+    text-shadow: none;
+    
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .title {
+    font-size: 2.5rem;
+    color: $text-primary;
+    font-family: 'Fredoka One', cursive;
+    text-shadow: none;
+  }
+}
+
+.card {
+  background-color: #ffffff;
+  border: 3px solid $border-ink;
+  border-radius: 6px;
+  box-shadow: $shadow-md;
+  width: 100%;
+  max-width: 450px;
+  padding: 2rem;
+}
+
+.tabs {
+  display: flex;
+  margin-bottom: 2rem;
+  border-bottom: 2px solid $border-ink;
+
+  .tab {
+    flex: 1;
+    text-align: center;
+    padding: 1rem;
+    cursor: pointer;
+    color: $text-muted;
+    font-family: 'Fredoka One', cursive;
+    transition: all 0.3s ease;
+
+    &.active {
+      color: $text-primary;
+      background-color: $bg-tertiary;
+      border: 3px solid $border-ink;
+      border-bottom: none;
+      border-radius: 8px 8px 0 0;
+    }
+
+    &:hover:not(.active) {
+      color: $text-primary;
+    }
+  }
+}
+
+.tab-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  .input-code {
+    background-color: #ffffff;
+    border: 3px solid $border-ink;
+    box-shadow: $shadow-sm;
+    color: $text-primary;
+    padding: 1rem;
+    font-size: 1.5rem;
+    text-align: center;
+    border-radius: 6px;
+    font-family: 'Fredoka One', cursive;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+
+    &:focus {
+      outline: none;
+      box-shadow: $shadow-md;
+      transform: translate(-2px, -2px);
+    }
+  }
+}
+
+.btn {
+  padding: 1rem;
+  border-radius: 6px;
+  font-size: 1.2rem;
+  font-family: 'Fredoka One', cursive;
+  text-transform: uppercase;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  
+  &.primary {
+    background-color: $accent-green;
+    border: 3px solid $border-ink;
+    color: #ffffff;
+    box-shadow: $shadow-md;
+
+    &:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: $shadow-lg;
+    }
+    
+    &:active {
+      transform: scale(0.95);
+    }
+  }
+  
+  &:disabled {
+    background-color: $border-subtle;
+    color: $text-muted;
+    box-shadow: none;
+    border: 3px solid $border-ink;
+    transform: none;
+    cursor: not-allowed;
+  }
+}
+
+.error {
+  color: $accent-x;
+  margin-top: 1rem;
+  text-align: center;
+  font-family: 'Nunito', sans-serif;
+  font-weight: bold;
+}
+
+.room-view {
+  background-color: #ffffff;
+  border: 3px solid $border-ink;
+  border-radius: 6px;
+  box-shadow: $shadow-md;
+  width: 100%;
+  max-width: 500px;
+  padding: 2rem;
+  text-align: center;
+
+  .code-box {
+    background-color: $accent-sun;
+    border: 3px solid $border-ink;
+    box-shadow: $shadow-md;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    position: relative;
+
+    span {
+      font-size: 1rem;
+      color: $text-primary;
+      font-family: 'Fredoka One', cursive;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      font-size: 3rem;
+      color: $text-primary;
+      margin-top: 0.5rem;
+      letter-spacing: 0.3em;
+      font-family: 'Fredoka One', cursive;
+      text-shadow: none;
+    }
+
+    .icon-btn {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: $accent-x;
+      color: #ffffff;
+      border: 3px solid $border-ink;
+      box-shadow: $shadow-sm;
+      font-size: 1.2rem;
+      padding: 0.5rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: transform 0.1s;
+
+      &:hover {
+        transform: translate(-2px, -2px);
+        box-shadow: $shadow-md;
+      }
+      &:active {
+        transform: scale(0.95);
+      }
+    }
+  }
+
+  .players-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2rem;
+
+    .player-badge {
+      display: flex;
+      align-items: center;
+      background-color: $bg-tertiary;
+      border: 2px solid $border-ink;
+      padding: 1rem 1.5rem;
+      border-radius: 50px; // Pill shape
+      gap: 1rem;
+
+      .avatar {
+        font-size: 1.5rem;
+      }
+
+      .name {
+        font-size: 1.2rem;
+        color: $text-primary;
+        font-family: 'Fredoka One', cursive;
+
+        span {
+          color: $text-muted;
+          font-family: 'Nunito', sans-serif;
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+
+  .waiting-indicator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+
+    .bouncing-dots {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      justify-content: center;
+      height: 40px;
+      
+      .dot {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        border: 2px solid $border-ink;
+        box-shadow: $shadow-sm;
+        animation: bounceDot 1.4s infinite ease-in-out both;
+        
+        &:nth-child(1) {
+          background-color: $accent-x;
+          animation-delay: -0.32s;
+        }
+        &:nth-child(2) {
+          background-color: $accent-sun;
+          animation-delay: -0.16s;
+        }
+        &:nth-child(3) {
+          background-color: $accent-o;
+        }
+      }
+    }
+
+    p {
+      color: $text-muted;
+      font-family: 'Nunito', sans-serif;
+      font-weight: bold;
+    }
+  }
+
+  .start-btn {
+    width: 100%;
+    
+    &.ready {
+      background-color: $accent-green;
+      border: 3px solid $border-ink;
+      color: #ffffff;
+      box-shadow: $shadow-md;
+      
+      &:hover {
+        transform: translate(-3px, -3px);
+        box-shadow: $shadow-lg;
+      }
+      
+      &:active {
+        transform: scale(0.95);
+      }
+    }
+  }
+
+  .waiting-host {
+    color: $accent-o;
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.2rem;
+    animation: fadeInSlide 1s infinite alternate;
+  }
+}

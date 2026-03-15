@@ -1,0 +1,16 @@
+<div class="rules-container">
+  <div class="header">
+    <a routerLink="/" class="back-link">&larr; Back to Home</a>
+    <h1 class="title">Laws of the Arena</h1>
+  </div>
+
+  <div class="rules-list">
+    <div class="rule-card" *ngFor="let rule of rules">
+      <div class="rule-badge">{{ rule.num }}</div>
+      <div class="rule-content">
+        <h2>Rule {{ rule.num }} &mdash; {{ rule.title }}</h2>
+        <p>{{ rule.desc }}</p>
+      </div>
+    </div>
+  </div>
+</div>

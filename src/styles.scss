@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap');
+@import 'styles/variables';
+@import 'styles/animations';
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  background-color: $bg-primary;
+  background-image: radial-gradient(circle, #e5d8b0 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+  color: $text-primary;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Custom Scrollbar Styles */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+::-webkit-scrollbar-track {
+  background: $bg-secondary;
+}
+::-webkit-scrollbar-thumb {
+  background: $accent-sun;
+  border-radius: 6px;
+  border: 3px solid $bg-secondary;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: darken($accent-sun, 10%);
+}
+
+h1, h2, h3, h4, h5, h6, .orbitron {
+  font-family: 'Fredoka One', cursive;
+  text-shadow: none;
+}
+
+a {
+  color: $accent-x;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  
+  &:hover {
+    color: lighten($accent-x, 15%);
+  }
+}
+
+button {
+  font-family: 'Fredoka One', cursive;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}

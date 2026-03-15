@@ -1,0 +1,37 @@
+$bp-mobile: 480px;
+$bp-tablet: 768px;
+$bp-desktop: 1024px;
+
+// === CARNIVAL FEST THEME ===
+
+// Backgrounds
+$bg-primary: #fffbf0;          // Warm cream — main page background
+$bg-secondary: #fff8e7;        // Slightly deeper cream — card surfaces
+$bg-tertiary: #fdefc3;         // Warm golden tint — elevated/hover surfaces
+
+// Player Colors
+$accent-x: #e8360d;            // Bold tomato red (Player X)
+$accent-o: #1a6ef5;            // Vivid cobalt blue (Player O)
+
+// Active macro-cell highlight
+$active-macro: #f5a623;        // Warm amber-orange — glowing border for active arena
+
+// Borders & Ink
+$border-ink: #1c1c1c;          // Near-black ink for outlines (not pure black)
+$border-subtle: #e5d8b0;       // Muted warm tan for inner cell lines
+
+// Text
+$text-primary: #1c1208;        // Deep warm brown-black
+$text-muted: #7a6a4f;          // Muted warm tan for secondary text
+
+// Accents & Fun
+$accent-sun: #ffcc00;          // Bright yellow — badges, highlights
+$accent-green: #2ecc71;        // Carnival green — success states
+$accent-pink: #ff4d8d;         // Hot pink — celebrations, win state
+
+// Shadows (warm-tinted, not grey)
+$shadow-sm: 3px 3px 0px #1c1c1c;        // Hard ink shadow (small)
+$shadow-md: 5px 5px 0px #1c1c1c;        // Hard ink shadow (medium)
+$shadow-lg: 8px 8px 0px #1c1c1c;        // Hard ink shadow (large)
+
+$win-glow: $accent-green;

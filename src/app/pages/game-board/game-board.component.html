@@ -1,0 +1,112 @@
+<div class="game-container" *ngIf="gameState()">
+  
+  <div class="game-topbar">
+    <button
+      *ngIf="mode === 'local'"
+      class="btn-back"
+      (click)="goHome()"
+      title="Back to Home"
+      aria-label="Back to Home">
+      ←
+    </button>
+    
+    <div class="top-bar">
+      <div class="player-badge player-x" [class.active-turn]="isPlayerXTurn()">
+        <span class="symbol">X</span> <span class="player-name">{{ getPlayerXName() }}</span>
+      </div>
+      
+      <div class="vs">VS</div>
+      
+      <div class="player-badge player-o" [class.active-turn]="!isPlayerXTurn()">
+        <span class="player-name">{{ getPlayerOName() }}</span> <span class="symbol">O</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="mega-board">
+    <div *ngFor="let maR of macroRows" class="macro-row">
+      <div *ngFor="let maC of macroRows" 
+           class="macro-cell"
+           [class.active-macro]="isActiveMacro(maR, maC) && !getMacroWinner(maR, maC)"
+           [class.won]="getMacroWinner(maR, maC)"
+           [ngClass]="getMacroWinner(maR, maC) ? 'won-' + getMacroWinnerSymbol(maR, maC).toLowerCase() : ''">
+        
+        <!-- Inner micro grid if not won -->
+        <ng-container *ngIf="!getMacroWinner(maR, maC)">
+          <div *ngFor="let miR of microRows" class="micro-row">
+            <div *ngFor="let miC of microRows" 
+                 class="micro-cell"
+                 [class.playable]="isMicroCellPlayable(maR, maC, miR, miC)"
+                 [class.filled]="getMicroCellSymbol(maR, maC, miR, miC)"
+                 [ngClass]="getMicroCellSymbol(maR, maC, miR, miC) ? 'symbol-' + getMicroCellSymbol(maR, maC, miR, miC).toLowerCase() : ''"
+                 (click)="onCellClick(maR, maC, miR, miC)">
+              {{ getMicroCellSymbol(maR, maC, miR, miC) }}
+            </div>
+          </div>
+        </ng-container>
+
+        <!-- Big symbol if won -->
+        <div class="won-symbol" *ngIf="getMacroWinner(maR, maC)">
+          {{ getMacroWinnerSymbol(maR, maC) }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Game Over Popup Overlay -->
+  <div class="overlay" *ngIf="gameState()?.gameOver">
+    <div class="popup-card" 
+         [class.victory]="popupType === 'victory'"
+         [class.defeat]="popupType === 'defeat'"
+         [class.draw]="popupType === 'draw'">
+
+      <!-- VICTORY (Online) -->
+      <ng-container *ngIf="mode === 'online' && popupType === 'victory'">
+        <div class="popup-icon">🏆</div>
+        <h2 class="result-text victory">VICTORY!</h2>
+        <p class="popup-subtext">The arena bows to you, champion!</p>
+      </ng-container>
+
+      <!-- DEFEAT (Online) -->
+      <ng-container *ngIf="mode === 'online' && popupType === 'defeat'">
+        <div class="popup-icon">💀</div>
+        <h2 class="result-text defeat">DEFEATED!</h2>
+        <p class="popup-subtext">Every legend falls before they rise again.</p>
+      </ng-container>
+
+      <!-- VICTORY (Local) -->
+      <ng-container *ngIf="mode === 'local' && popupType === 'victory'">
+        <div class="popup-icon">🏆</div>
+        <h2 class="result-text victory">{{ winnerName }} Wins!</h2>
+        <p class="popup-subtext">Champion of the arena!</p>
+      </ng-container>
+      
+      <!-- DRAW -->
+      <ng-container *ngIf="popupType === 'draw'">
+        <div class="popup-icon">🤝</div>
+        <h2 class="result-text draw">HONORABLE DRAW</h2>
+        <p class="popup-subtext">Two warriors, equally matched.</p>
+      </ng-container>
+      
+      <button class="btn return-btn" (click)="goHome()">Return to Home</button>
+
+      <!-- Confetti -->
+      <div class="confetti" *ngIf="popupType === 'victory'">
+        <span style="--tx: 100px; --ty: -100px;"></span>
+        <span style="--tx: -100px; --ty: -140px;"></span>
+        <span style="--tx: 120px; --ty: 80px;"></span>
+        <span style="--tx: -80px; --ty: 120px;"></span>
+        <span style="--tx: 150px; --ty: -20px;"></span>
+        <span style="--tx: -130px; --ty: 40px;"></span>
+        <span style="--tx: 40px; --ty: -160px;"></span>
+        <span style="--tx: -50px; --ty: -120px;"></span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Loading state -->
+<div class="loading" *ngIf="!gameState()">
+  Loading Battlefield...
+</div>

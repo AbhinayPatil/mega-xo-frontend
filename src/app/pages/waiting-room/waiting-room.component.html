@@ -1,0 +1,60 @@
+<div class="waiting-container">
+  <div class="header">
+    <a routerLink="/" class="back-link">&larr; Back</a>
+    <h1 class="title">The War Room</h1>
+  </div>
+
+  <div class="card" *ngIf="!roomCode">
+    <div class="tabs">
+      <div class="tab" [class.active]="activeTab === 'create'" (click)="setTab('create')">Create Room</div>
+      <div class="tab" [class.active]="activeTab === 'join'" (click)="setTab('join')">Join Room</div>
+    </div>
+
+    <div class="tab-content" *ngIf="activeTab === 'create'">
+      <button class="btn primary" (click)="createRoom()">Generate Battle Code</button>
+    </div>
+
+    <div class="tab-content" *ngIf="activeTab === 'join'">
+      <input type="text" placeholder="Enter Battle Code" [(ngModel)]="joinCode" class="input-code" />
+      <button class="btn primary" (click)="joinRoom()">Enter the Arena</button>
+    </div>
+
+    <div class="error" *ngIf="errorMsg">{{ errorMsg }}</div>
+  </div>
+
+  <div class="room-view" *ngIf="roomCode">
+    <div class="code-box">
+      <span>Battle Code</span>
+      <h2>{{ roomCode }}</h2>
+      <button class="icon-btn" (click)="copyCode()" title="Copy Code">📋</button>
+    </div>
+
+    <div class="waiting-indicator" *ngIf="players.length < 2">
+      <div class="bouncing-dots">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      <p>Waiting for your opponent to join...</p>
+    </div>
+
+    <div class="players-list">
+      <div class="player-badge" *ngFor="let p of players; let i = index">
+        <span class="avatar">{{ i === 0 ? '🐺' : '🦅' }}</span>
+        <span class="name">{{ p.name }} <span *ngIf="p.id === currentPlayer.id">(You)</span></span>
+      </div>
+    </div>
+
+    <div class="actions" *ngIf="isHost">
+      <button class="btn start-btn" 
+              [class.ready]="players.length === 2" 
+              [disabled]="players.length < 2"
+              (click)="startBattle()">
+        Start Battle
+      </button>
+    </div>
+    <div class="actions" *ngIf="!isHost">
+      <p class="waiting-host" *ngIf="players.length === 2">Waiting for host to start...</p>
+    </div>
+  </div>
+</div>

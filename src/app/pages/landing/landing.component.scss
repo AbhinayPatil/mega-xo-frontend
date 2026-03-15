@@ -1,0 +1,122 @@
+@import '../../../styles/variables';
+
+:host {
+  display: block;
+  min-height: 100vh;
+  width: 100%;
+  background-color: $bg-primary;
+  background-image: radial-gradient(circle, #e5d8b0 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.landing-container {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem 1rem;
+  box-sizing: border-box;
+  background-color: $bg-primary; // Ensure no white parent leaking
+}
+
+.hero {
+  margin-bottom: 4rem;
+
+  .logo {
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+    text-shadow: $shadow-md;
+    
+    .mega {
+      color: $accent-x;
+    }
+    .xo {
+      color: $accent-o;
+    }
+  }
+
+  .tagline {
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: $text-muted;
+  }
+}
+
+.modes-grid {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 800px;
+  margin-bottom: 4rem;
+  justify-content: center;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+.mode-card {
+  flex: 1;
+  width: 100%;
+  background: #ffffff;
+  border: 3px solid $border-ink;
+  box-shadow: $shadow-md;
+  border-radius: 6px;
+  padding: 2rem 1.5rem;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .icon {
+    font-family: 'Fredoka One', cursive;
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    
+    .icon-x { color: $accent-x; }
+    .icon-o { color: $accent-o; }
+  }
+
+  h2 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    color: $text-primary;
+  }
+
+  p {
+    color: $text-muted;
+    font-size: 1rem;
+  }
+
+  &:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: $shadow-lg;
+  }
+}
+
+.footer {
+  .rules-link {
+    font-family: 'Fredoka One', cursive;
+    color: $accent-o;
+    font-size: 1.2rem;
+    
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+@media (max-width: $bp-tablet) {
+  .mode-card {
+    max-width: none;
+  }
+}

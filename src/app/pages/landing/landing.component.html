@@ -1,0 +1,24 @@
+<div class="landing-container">
+  <header class="hero">
+    <h1 class="logo"><span class="mega">MEGA</span> <span class="xo">XO</span></h1>
+    <p class="tagline">Nine Arenas. One Champion.</p>
+  </header>
+
+  <main class="modes-grid">
+    <div class="mode-card local" (click)="startLocalDuel()">
+      <div class="icon"><span class="icon-x">X</span> <span class="icon-o">O</span></div>
+      <h2>Local Duel</h2>
+      <p>Same device, face to face</p>
+    </div>
+
+    <div class="mode-card online" (click)="gotoBattleOnline()">
+      <div class="icon"><span class="icon-o">O</span> <span class="icon-x">X</span></div>
+      <h2>Battle Online</h2>
+      <p>Challenge a friend over the internet</p>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <a routerLink="/rules" class="rules-link">How to play &rarr;</a>
+  </footer>
+</div>
